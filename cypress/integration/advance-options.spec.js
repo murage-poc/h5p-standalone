@@ -1,4 +1,5 @@
-describe('single', () => {
+describe('Advance Options', () => {
+    
     it('should display h5p', () => {
 
         cy.visit('test/advance-options.html');

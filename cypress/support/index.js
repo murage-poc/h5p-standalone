@@ -27,3 +27,7 @@ before( () =>{
 after(()=>{
    cy.task('clean'); //we need to clean up after ourselves
 })
+
+Cypress.on('window:before:load', (win) => {
+    cy.spy(win.console, "log")
+  })

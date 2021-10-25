@@ -4,6 +4,9 @@ describe('single', () => {
     cy.visit('test/single.html');
 
     cy.get('.h5p-iframe').should(iframe => {
+
+      expect(iframe).to.exist
+
       expect(iframe.contents().find('.h5p-content')).to.exist;
 
       iframe.contents().find('.h5p-true-false-answer').click();

@@ -4,6 +4,10 @@ describe('external libraries', () => {
     cy.visit('test/external_libraries.html');
 
     cy.get('.h5p-iframe').should(iframe => {
+      
+      expect(iframe).to.exist
+
+
       expect(iframe.contents().find('.h5p-content')).to.exist;
 
       iframe.contents().find('.h5p-true-false-answer').click();

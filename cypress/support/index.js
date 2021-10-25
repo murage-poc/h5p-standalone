@@ -14,16 +14,15 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
-before( () =>{
-
-    cy.task('unzip:h5p') // Extract .h5p for tests
-        .task('copy:libraries') // copy libraries
-        .task('copy:content') // copy content
-        .task('copy:h5pjson'); // copy H5P.json file to content folder
+before(() => {
+  cy.task("unzip:h5p", { timeout: 20000 }) // Extract .h5p for tests
+    .task("copy:libraries", { timeout: 20000 }) // copy libraries
+    .task("copy:content", { timeout: 20000 }) // copy content
+    .task("copy:h5pjson", { timeout: 20000 }); // copy H5P.json file to content folder
 });
 
-after(()=>{
-   cy.task('clean'); //we need to clean up after ourselves
-})
+after(() => {
+  cy.task("clean"); //we need to clean up after ourselves
+});

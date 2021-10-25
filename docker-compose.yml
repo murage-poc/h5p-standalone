@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  e2e:
+    image: cypress
+    container_name: cypress
+    command: npx cypress run
+    volumes:
+      - $PWD/:/app

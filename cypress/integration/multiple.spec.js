@@ -3,11 +3,11 @@ describe('multiple', () => {
 
     cy.visit('test/multiple.html');
 
-    cy.get('#h5p-container-1 .h5p-iframe').should(iframe => {
+    cy.get('#h5p-container-1 iframe.h5p-iframe.h5p-iframe.h5p-initialized').should(iframe => {
       expect(iframe.contents().find('.h5p-content')).to.exist;
     });
 
-    cy.get('#h5p-container-2 .h5p-iframe').should(iframe => {
+    cy.get('#h5p-container-2 iframe.h5p-iframe.h5p-iframe.h5p-initialized').should(iframe => {
       expect(iframe.contents().find('.h5p-content')).to.exist;
     });
   });

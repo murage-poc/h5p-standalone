@@ -1,9 +1,9 @@
-describe('single', () => {
+describe('Advance Options', () => {
     it('should display h5p', () => {
 
         cy.visit('test/advance-options.html');
 
-        cy.get('.h5p-iframe').should(iframe => {
+        cy.get('iframe.h5p-iframe.h5p-iframe.h5p-initialized').should(iframe => {
             expect(iframe.contents().find('.h5p-content')).to.exist;
 
             iframe.contents().find('.h5p-true-false-answer').click();
@@ -26,7 +26,7 @@ describe('single', () => {
     it('should display embed code dialog', () => {
 
         cy.visit('test/advance-options.html');
-        cy.get('.h5p-iframe').should((iframe) => {
+        cy.get('iframe.h5p-iframe.h5p-iframe.h5p-initialized').should((iframe) => {
 
             expect(iframe.contents().find('.h5p-actions').find('.h5p-embed')).to.exist;
 

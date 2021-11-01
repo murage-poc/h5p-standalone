@@ -1,43 +1,53 @@
 describe('Advance Options', () => {
+    beforeEach(() => {
+        cy.visit('test/advance-options.html');
+    });
+
     it('should display h5p', () => {
 
-        cy.visit('test/advance-options.html');
+        cy.iframe('iframe.h5p-iframe.h5p-iframe.h5p-initialized')
+            .should('be.visible')
+            .within(() => {
+                cy.get('.h5p-true-false-answers .h5p-true-false-answer')
+                    .contains('False')
+                    .click();
 
-        cy.get('iframe.h5p-iframe.h5p-iframe.h5p-initialized').should(iframe => {
-            expect(iframe.contents().find('.h5p-content')).to.exist;
+                cy.get('.h5p-question-check-answer')
+                    .click();
 
-            iframe.contents().find('.h5p-true-false-answer').click();
+                cy.get('.h5p-joubelui-score-bar-star')
+                    .should('be.visible');
 
-            iframe.contents().find('.h5p-question-check-answer').click();
-
-            expect(iframe.contents().find('.h5p-joubelui-score-bar-star')).to.exist;
-
-            expect(iframe.contents().find('.h5p-actions').find('.h5p-export')).to.exist;
-
-            iframe.contents()
-                .find('.h5p-actions')
-                .find('.h5p-export')
-                .click();
-
-            expect(iframe.contents().find('.h5p-download-button')).to.exist;
-        });
+            })
     });
+
+    it('should display export dialog', () => {
+
+        cy.iframe('iframe.h5p-iframe.h5p-iframe.h5p-initialized')
+            .within(() => {
+                cy.get('.h5p-actions')
+                    .find('.h5p-export')
+                    .should('be.visible')
+                    .click();
+
+                cy.get('.h5p-download-button').should('be.visible')
+            })
+    });
+
 
     it('should display embed code dialog', () => {
 
-        cy.visit('test/advance-options.html');
-        cy.get('iframe.h5p-iframe.h5p-iframe.h5p-initialized').should((iframe) => {
+        cy.iframe('iframe.h5p-iframe.h5p-iframe.h5p-initialized')
+            .within(() => {
+                cy.get('.h5p-actions')
+                    .find('.h5p-embed')
+                    .should('be.visible')
+                    .click();
 
-            expect(iframe.contents().find('.h5p-actions').find('.h5p-embed')).to.exist;
-
-            iframe.contents()
-                .find('.h5p-actions')
-                .find('.h5p-embed')
-                .click();
-
-            expect(iframe.contents().find('.h5p-embed-code-container')).to.exist;
-            expect(iframe.contents().find('.h5p-embed-size')).to.exist;
-        })
-
-    });
+                cy.get('.h5p-embed-code-container')
+                    .should('be.visible')
+                cy.get('.h5p-embed-size')
+                    .should('be.visible')
+            })
+    })
 });
